@@ -1,0 +1,3 @@
+aetha.iamtrazy.eu.org {
+	reverse_proxy aetha-frontend:4173
+}

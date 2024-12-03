@@ -1,18 +1,29 @@
 services:
+  caddy:
+    image: caddy:2.8.4-alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./caddy/caddy-conf:/etc/caddy/
+      - caddy-conf:/config
+      - caddy-data:/data
+    networks:
+      - app-network
   aetha-frontend:
     build: ./aetha-frontend
     container_name: aetha-frontend
     networks:
       - app-network
-    ports:
-      - 4173:4173
   aetha-backend:
     build: ./aetha-backend
     container_name: aetha-backend
     networks:
       - app-network
-    ports:
-      - 8080:8080
 networks:
   app-network:
     driver: bridge
+
+volumes:
+  caddy-conf:
+  caddy-data:
