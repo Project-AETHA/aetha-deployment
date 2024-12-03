@@ -11,15 +11,21 @@ services:
     networks:
       - app-network
   aetha-frontend:
-    build: ./aetha-frontend
+    image: nisalwishwajith/aetha-frontend:latest
+    # build: ./aetha-frontend
     container_name: aetha-frontend
     networks:
       - app-network
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
   aetha-backend:
-    build: ./aetha-backend
+    image: nisalwishwajith/aetha-backend:latest
+    # build: ./aetha-backend
     container_name: aetha-backend
     networks:
       - app-network
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
 networks:
   app-network:
     driver: bridge
