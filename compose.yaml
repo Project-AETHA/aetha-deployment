@@ -26,6 +26,13 @@ services:
       - app-network
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
+  watchtower:
+    image: containrrr/watchtower
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: ["--interval", "30", "--cleanup", "--rolling-restart", "--label-enable"]
+    
 networks:
   app-network:
     driver: bridge
